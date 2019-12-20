@@ -413,4 +413,11 @@ class StrictComparisonOfDifferentTypesRuleTest extends \PHPStan\Testing\RuleTest
 		]);
 	}
 
+	public function testStrictComparisonWithVariableMutatedInsideClosure(): void
+	{
+		$this->checkAlwaysTrueStrictComparison = true;
+		// This test is to root out a false positive.
+		$this->analyse([__DIR__ . '/data/strict-comparison-with-mutating-reference.php'], []);
+	}
+
 }
